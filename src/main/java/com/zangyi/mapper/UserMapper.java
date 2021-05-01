@@ -9,7 +9,6 @@ public interface UserMapper {
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
-
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
