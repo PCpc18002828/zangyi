@@ -1,4 +1,4 @@
-package com.zangyi.mapper.Extend;
+package com.zangyi.mapper.extend;
 
 public interface UserExtendMapper {
 

@@ -50,4 +50,15 @@ public class User {
     public void setUserSer(String userSer) {
         this.userSer = userSer == null ? null : userSer.trim();
     }
+
+    public User() {
+    }
+
+    public User(Integer id, String userName, String userPassword, Integer userAge, String userSer) {
+        this.id = id;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userAge = userAge;
+        this.userSer = userSer;
+    }
 }
