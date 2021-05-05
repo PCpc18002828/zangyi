@@ -1,12 +1,16 @@
 package com.zangyi.controller;
 
-import com.zangyi.common.User;
-import com.zangyi.common.UserExample;
+
+
+
+import com.zangyi.common.UserInfo;
 import com.zangyi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -17,11 +21,21 @@ public class UserController {
 //    插入数据：
     @Autowired
     UserService userService;
-    @ResponseBody
+
+
     @RequestMapping("/insert")
-    public int userInsert(){
-        return userService.userInsert();
+    @ResponseBody
+    public void userInsert(UserInfo userInfo) {
+         userService.insertUser(userInfo);
     }
-
-
+//用户登录
+//登陆时的请求操作(第一次登录时插入一条新的记录到数据库，)
+//                map.put("token",token);
+//                map.put("status",1/0);1为成功
+//                map.put("userInfo",wUserInformation);
+    @RequestMapping("/login")
+    @ResponseBody
+    public Map<String, Object> login(String encryptedData, String iv, String code) {
+        return userService.wxLogin(encryptedData, iv, code);
+    }
 }
