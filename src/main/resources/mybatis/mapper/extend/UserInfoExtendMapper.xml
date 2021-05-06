@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zangyi.mapper.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.zangyi.common.UserInfo">
+        <result column="openid" jdbcType="VARCHAR" property="openid" />
+        <result column="nickName" jdbcType="VARCHAR" property="nickname" />
+        <result column="gender" jdbcType="INTEGER" property="gender" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="country" jdbcType="VARCHAR" property="country" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="avatarUrl" jdbcType="VARCHAR" property="avatarurl" />
+        <result column="set_time" jdbcType="DATE" property="setTime" />
+    </resultMap>
+</mapper>
