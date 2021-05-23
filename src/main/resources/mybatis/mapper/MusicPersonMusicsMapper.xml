@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zangyi.mapper.MusicPersonMusicsMapper">
+  <resultMap id="BaseResultMap" type="com.zangyi.common.MusicPersonMusics">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="songZang" jdbcType="VARCHAR" property="songzang" />
+    <result column="songHan" jdbcType="VARCHAR" property="songhan" />
+    <result column="songAudio" jdbcType="VARCHAR" property="songaudio" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, userId, songZang, songHan, songAudio
+  </sql>
+  <select id="selectByExample" parameterType="com.zangyi.common.MusicPersonMusicsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from musicpersonmusics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zangyi.common.MusicPersonMusicsExample">
+    delete from musicpersonmusics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zangyi.common.MusicPersonMusics">
+    insert into musicpersonmusics (id, userId, songZang, 
+      songHan, songAudio)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{songzang,jdbcType=VARCHAR}, 
+      #{songhan,jdbcType=VARCHAR}, #{songaudio,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zangyi.common.MusicPersonMusics">
+    insert into musicpersonmusics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="songzang != null">
+        songZang,
+      </if>
+      <if test="songhan != null">
+        songHan,
+      </if>
+      <if test="songaudio != null">
+        songAudio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="songzang != null">
+        #{songzang,jdbcType=VARCHAR},
+      </if>
+      <if test="songhan != null">
+        #{songhan,jdbcType=VARCHAR},
+      </if>
+      <if test="songaudio != null">
+        #{songaudio,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zangyi.common.MusicPersonMusicsExample" resultType="java.lang.Long">
+    select count(*) from musicpersonmusics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update musicpersonmusics
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.songzang != null">
+        songZang = #{record.songzang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songhan != null">
+        songHan = #{record.songhan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songaudio != null">
+        songAudio = #{record.songaudio,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update musicpersonmusics
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      songZang = #{record.songzang,jdbcType=VARCHAR},
+      songHan = #{record.songhan,jdbcType=VARCHAR},
+      songAudio = #{record.songaudio,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
