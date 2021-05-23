@@ -55,6 +55,7 @@ public class  UserServiceImpl implements UserService {
         if (findUser(openid, map)) {
             map.put("token", token);
             map.put("status", 1);
+            map.put("msg", "用户已存在");
 //            map.put("userInfo", wUserInformation);在findUser中已执行
             return map;
 
@@ -65,7 +66,7 @@ public class  UserServiceImpl implements UserService {
                 Map<String, String> result = AesCbcUtil.decrypt(encryptedData, session_key, iv);
                 if (null != result && result.size() > 0) {
                     map.put("status", 1);
-                    map.put("mag", "解密成功");
+                    map.put("msg", "解密成功");
                     JSONObject userInfoJSON = JSONObject.parseObject(JSONObject.toJSONString(result));
                     UserInfo userInfo = new UserInfo();
 

@@ -33,6 +33,7 @@ public class UserController {
 //                map.put("token",token);
 //                map.put("status",1/0);1为成功
 //                map.put("userInfo",wUserInformation);
+//                map.put("msg",提示信息)，提示信息：“解密成功/失败，code不能为空，用户已存在”
     @RequestMapping("/login")
     @ResponseBody
     public Map<String, Object> login(String encryptedData, String iv, String code) {
