@@ -1,12 +1,10 @@
 package com.zangyi.service.impl;
 
 import com.aliyuncs.exceptions.ClientException;
-import com.zangyi.common.MusicPersonList;
-import com.zangyi.common.MusicPersonListExample;
-import com.zangyi.common.MusicPersonMusics;
-import com.zangyi.common.MusicPersonMusicsExample;
+import com.zangyi.common.*;
 import com.zangyi.mapper.MusicPersonListMapper;
 import com.zangyi.mapper.MusicPersonMusicsMapper;
+import com.zangyi.mapper.MusicVideoMapper;
 import com.zangyi.service.MusicService;
 import com.zangyi.utils.VideoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,8 @@ public class MusciServiceImpl implements MusicService {
     MusicPersonListMapper musicPersonListMapper;
     @Autowired
     MusicPersonMusicsMapper musicPersonMusicsMapper;
-
+    @Autowired
+    MusicVideoMapper musicVideoMapper;
 
     @Override
     public List<MusicPersonList> personListBoy() {
@@ -46,5 +45,10 @@ public class MusciServiceImpl implements MusicService {
         }
         System.out.println(musicPersonMusics);
         return musicPersonMusics;
+    }
+
+    @Override
+    public List<MusicVideo> getVideos() {
+        return musicVideoMapper.selectByExample(null);
     }
 }

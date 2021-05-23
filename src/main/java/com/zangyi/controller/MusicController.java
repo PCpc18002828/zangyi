@@ -3,6 +3,7 @@ package com.zangyi.controller;
 import com.aliyuncs.exceptions.ClientException;
 import com.zangyi.common.MusicPersonList;
 import com.zangyi.common.MusicPersonMusics;
+import com.zangyi.common.MusicVideo;
 import com.zangyi.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,5 +47,13 @@ public class MusicController {
     public List<MusicPersonMusics> personMusics(Integer id) throws ClientException {
         return musicService.personMusics(id);
     }
-
+    /**
+     * 根据歌曲视频列表
+     * @return
+     */
+    @RequestMapping("/musicVideo")
+    @ResponseBody
+    public List <MusicVideo> getVideos(){
+        return musicService.getVideos();
+    }
 }
