@@ -65,11 +65,17 @@ public class MusicController {
     }
     /**
      * 乐器视频
-     * @return
+     * list<Map<String,Object>>结构:
+     * key为:
+     * classId: int
+     * musicInstrument: String
+     * videoNames:[]该类乐器视频名
+     * urls：[]视频地址与videoNames对应
+      * @return
      */
     @RequestMapping("/instrumentVideo")
     @ResponseBody
-    public List<Map<String,Object>> getInstrumentVideo(){
+    public List<Map<String,Object>> getInstrumentVideo() throws ClientException {
         return musicService.getInstrumentVideo();
     }
 }
