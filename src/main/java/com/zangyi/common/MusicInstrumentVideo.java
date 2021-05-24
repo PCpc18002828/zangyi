@@ -1,6 +1,6 @@
 package com.zangyi.common;
 
-public class musicInstrumentVideo {
+public class MusicInstrumentVideo {
     private Integer id;
 
     private Integer classid;

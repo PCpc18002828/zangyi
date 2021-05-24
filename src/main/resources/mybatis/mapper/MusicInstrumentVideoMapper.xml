@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zangyi.mapper.musicInstrumentVideoMapper">
-  <resultMap id="BaseResultMap" type="com.zangyi.common.musicInstrumentVideo">
+<mapper namespace="com.zangyi.mapper.MusicInstrumentVideoMapper">
+  <resultMap id="BaseResultMap" type="com.zangyi.common.MusicInstrumentVideo">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="classId" jdbcType="INTEGER" property="classid" />
     <result column="musicalInstrument" jdbcType="VARCHAR" property="musicalinstrument" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id, classId, musicalInstrument, name, urlId
   </sql>
-  <select id="selectByExample" parameterType="com.zangyi.common.musicInstrumentVideoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.zangyi.common.MusicInstrumentVideoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -83,19 +83,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.zangyi.common.musicInstrumentVideoExample">
+  <delete id="deleteByExample" parameterType="com.zangyi.common.MusicInstrumentVideoExample">
     delete from musicinstrument_video
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zangyi.common.musicInstrumentVideo">
+  <insert id="insert" parameterType="com.zangyi.common.MusicInstrumentVideo">
     insert into musicinstrument_video (id, classId, musicalInstrument, 
       name, urlId)
     values (#{id,jdbcType=INTEGER}, #{classid,jdbcType=INTEGER}, #{musicalinstrument,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{urlid,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zangyi.common.musicInstrumentVideo">
+  <insert id="insertSelective" parameterType="com.zangyi.common.MusicInstrumentVideo">
     insert into musicinstrument_video
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -132,7 +132,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zangyi.common.musicInstrumentVideoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.zangyi.common.MusicInstrumentVideoExample" resultType="java.lang.Long">
     select count(*) from musicinstrument_video
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

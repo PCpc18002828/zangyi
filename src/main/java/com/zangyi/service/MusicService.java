@@ -6,6 +6,7 @@ import com.zangyi.common.MusicPersonMusics;
 import com.zangyi.common.MusicVideo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MusicService {
     List<MusicPersonList> personListBoy();
@@ -15,4 +16,6 @@ public interface MusicService {
     List<MusicPersonMusics> personMusics(Integer id) throws ClientException;
 
     List<MusicVideo> getVideos();
+
+    List<Map<String, Object>> getInstrumentVideo() throws ClientException;
 }

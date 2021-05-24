@@ -22,6 +22,7 @@ public class MusicController {
 
     /**
      * 获得男歌手列表
+     *
      * @return
      */
     @RequestMapping("/personListBoy")
@@ -29,8 +30,10 @@ public class MusicController {
     public List<MusicPersonList> personListsForBoy() {
         return musicService.personListBoy();
     }
+
     /**
      * 获得女歌手列表
+     *
      * @return
      */
     @RequestMapping("/personListGril")
@@ -38,8 +41,10 @@ public class MusicController {
     public List<MusicPersonList> personListsForGril() {
         return musicService.personListGril();
     }
+
     /**
      * 根据歌手id获得歌手的歌曲信息列表
+     *
      * @return
      */
     @RequestMapping("/personMusics")
@@ -47,13 +52,24 @@ public class MusicController {
     public List<MusicPersonMusics> personMusics(Integer id) throws ClientException {
         return musicService.personMusics(id);
     }
+
     /**
      * 根据歌曲视频列表
+     *
      * @return
      */
     @RequestMapping("/musicVideo")
     @ResponseBody
-    public List <MusicVideo> getVideos(){
+    public List<MusicVideo> getVideos() {
         return musicService.getVideos();
+    }
+    /**
+     * 乐器视频
+     * @return
+     */
+    @RequestMapping("/instrumentVideo")
+    @ResponseBody
+    public List<Map<String,Object>> getInstrumentVideo(){
+        return musicService.getInstrumentVideo();
     }
 }

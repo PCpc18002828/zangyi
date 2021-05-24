@@ -3,14 +3,14 @@ package com.zangyi.common;
 import java.util.ArrayList;
 import java.util.List;
 
-public class musicInstrumentVideoExample {
+public class MusicInstrumentVideoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public musicInstrumentVideoExample() {
+    public MusicInstrumentVideoExample() {
         oredCriteria = new ArrayList<>();
     }
 
