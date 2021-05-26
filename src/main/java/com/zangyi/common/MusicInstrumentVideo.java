@@ -50,4 +50,15 @@ public class MusicInstrumentVideo {
     public void setUrlid(String urlid) {
         this.urlid = urlid == null ? null : urlid.trim();
     }
+
+    @Override
+    public String toString() {
+        return "MusicInstrumentVideo{" +
+                "id=" + id +
+                ", classid=" + classid +
+                ", musicalinstrument='" + musicalinstrument + '\'' +
+                ", name='" + name + '\'' +
+                ", urlid='" + urlid + '\'' +
+                '}';
+    }
 }

@@ -15,7 +15,7 @@ public interface MusicService {
 
     List<MusicPersonMusics> personMusics(Integer id) throws ClientException;
 
-    List<MusicVideo> getVideos();
+    List<MusicVideo> getVideos() throws ClientException;
 
     List<Map<String, Object>> getInstrumentVideo() throws ClientException;
 }

@@ -54,8 +54,11 @@ public class MusciServiceImpl implements MusicService {
     }
 
     @Override
-    public List<MusicVideo> getVideos() {
-        return musicVideoMapper.selectByExample(null);
+    public List<MusicVideo> getVideos() throws ClientException {
+        List<MusicVideo> musicVideos = musicVideoMapper.selectByExample(null);
+        for (int i = 0; i <musicVideos.size() ; i++) {
+            musicVideos.get(i).setVideo(VideoConfig.getPlayInfo(musicVideos.get(i).getVideo()));
+        }
     }
 
     @Override

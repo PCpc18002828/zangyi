@@ -40,14 +40,4 @@ public class MusicVideo {
     public void setNamehan(String namehan) {
         this.namehan = namehan == null ? null : namehan.trim();
     }
-
-    @Override
-    public String toString() {
-        return "MusicVideo{" +
-                "id=" + id +
-                ", video='" + video + '\'' +
-                ", namezang='" + namezang + '\'' +
-                ", namehan='" + namehan + '\'' +
-                '}';
-    }
 }
