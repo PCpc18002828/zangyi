@@ -59,6 +59,7 @@ public class MusciServiceImpl implements MusicService {
         for (int i = 0; i <musicVideos.size() ; i++) {
             musicVideos.get(i).setVideo(VideoConfig.getPlayInfo(musicVideos.get(i).getVideo()));
         }
+        return musicVideos;
     }
 
     @Override

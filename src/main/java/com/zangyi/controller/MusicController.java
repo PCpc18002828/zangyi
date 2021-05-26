@@ -54,13 +54,13 @@ public class MusicController {
     }
 
     /**
-     * 根据歌曲视频列表
+     * 获取歌曲视频列表
      *
      * @return
      */
     @RequestMapping("/musicVideo")
     @ResponseBody
-    public List<MusicVideo> getVideos() {
+    public List<MusicVideo> getVideos() throws ClientException {
         return musicService.getVideos();
     }
     /**
