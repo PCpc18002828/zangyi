@@ -1,9 +1,6 @@
 package com.zangyi.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zangyi.common.UserInfo;
-import com.zangyi.common.UserInfoExample;
-import com.zangyi.mapper.UserInfoMapper;
 import com.zangyi.service.UserService;
 import com.zangyi.utils.AesCbcUtil;
 import com.zangyi.utils.HttpRequest;
@@ -11,6 +8,7 @@ import com.zangyi.utils.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,14 +67,15 @@ public class  UserServiceImpl implements UserService {
                     map.put("msg", "解密成功");
                     JSONObject userInfoJSON = JSONObject.parseObject(JSONObject.toJSONString(result));
                     UserInfo userInfo = new UserInfo();
-
+                    System.out.println("userJson"+userInfoJSON);
                     userInfo.setOpenid(userInfoJSON.get("openId").toString());
                     userInfo.setNickname(userInfoJSON.get("nickName").toString());
                     userInfo.setGender(Integer.parseInt(userInfoJSON.get("gender").toString()));
                     userInfo.setCity(userInfoJSON.get("city").toString());
                     userInfo.setCountry(userInfoJSON.get("country").toString());
                     userInfo.setProvince(userInfoJSON.get("province").toString());
-                    userInfo.setProvince(userInfoJSON.get("avatarUrl").toString());
+                    userInfo.setAvatarurl(userInfoJSON.get("avatarUrl").toString());
+                    userInfo.setSetTime(new Date());
                     //数据库中添加用户相关信息
                     insertUser(userInfo);
                     map.put("userInfo", userInfo);
@@ -107,10 +106,10 @@ public class  UserServiceImpl implements UserService {
             userInfo.setCity(userInfos.get(0).getCity());
             userInfo.setCountry(userInfos.get(0).getCountry());
             userInfo.setProvince(userInfos.get(0).getProvince());
-            userInfo.setProvince(userInfos.get(0).getProvince());
-            //数据库中添加用户相关信息
-            insertUser(userInfo);
+            userInfo.setAvatarurl(userInfos.get(0).getAvatarurl());
+            userInfo.setSetTime(new Date());
             map.put("userInfo", userInfo);
+            System.out.println(userInfo);
             return true;
         } else {
             return false;
@@ -120,5 +119,11 @@ public class  UserServiceImpl implements UserService {
     @Override
     public void insertUser(UserInfo userInfo) {
         userInfoMapper.insertSelective(userInfo);
+    }
+
+    @Override
+    public Integer signIn(String nickName) {
+
+        return null;
     }
 }

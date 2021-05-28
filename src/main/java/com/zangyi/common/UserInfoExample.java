@@ -671,6 +671,126 @@ public class UserInfoExample {
             addCriterionForJDBCDate("set_time not between", value1, value2, "setTime");
             return (Criteria) this;
         }
+
+        public Criteria andLastSignIsNull() {
+            addCriterion("last_sign is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignIsNotNull() {
+            addCriterion("last_sign is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignEqualTo(Date value) {
+            addCriterion("last_sign =", value, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignNotEqualTo(Date value) {
+            addCriterion("last_sign <>", value, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignGreaterThan(Date value) {
+            addCriterion("last_sign >", value, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignGreaterThanOrEqualTo(Date value) {
+            addCriterion("last_sign >=", value, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignLessThan(Date value) {
+            addCriterion("last_sign <", value, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignLessThanOrEqualTo(Date value) {
+            addCriterion("last_sign <=", value, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignIn(List<Date> values) {
+            addCriterion("last_sign in", values, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignNotIn(List<Date> values) {
+            addCriterion("last_sign not in", values, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignBetween(Date value1, Date value2) {
+            addCriterion("last_sign between", value1, value2, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastSignNotBetween(Date value1, Date value2) {
+            addCriterion("last_sign not between", value1, value2, "lastSign");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumIsNull() {
+            addCriterion("sign_sum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumIsNotNull() {
+            addCriterion("sign_sum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumEqualTo(Integer value) {
+            addCriterion("sign_sum =", value, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumNotEqualTo(Integer value) {
+            addCriterion("sign_sum <>", value, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumGreaterThan(Integer value) {
+            addCriterion("sign_sum >", value, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sign_sum >=", value, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumLessThan(Integer value) {
+            addCriterion("sign_sum <", value, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumLessThanOrEqualTo(Integer value) {
+            addCriterion("sign_sum <=", value, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumIn(List<Integer> values) {
+            addCriterion("sign_sum in", values, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumNotIn(List<Integer> values) {
+            addCriterion("sign_sum not in", values, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumBetween(Integer value1, Integer value2) {
+            addCriterion("sign_sum between", value1, value2, "signSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignSumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sign_sum not between", value1, value2, "signSum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

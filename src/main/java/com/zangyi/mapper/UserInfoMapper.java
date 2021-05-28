@@ -5,9 +5,8 @@ import com.zangyi.common.UserInfoExample;
 import java.util.List;
 
 import com.zangyi.mapper.extend.UserInfoExtendMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface UserInfoMapper extends UserInfoExtendMapper {
     long countByExample(UserInfoExample example);
 

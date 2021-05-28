@@ -19,6 +19,10 @@ public class UserInfo {
 
     private Date setTime;
 
+    private Date lastSign;
+
+    private Integer signSum;
+
     public String getOpenid() {
         return openid;
     }
@@ -83,17 +87,19 @@ public class UserInfo {
         this.setTime = setTime;
     }
 
-    public UserInfo() {
+    public Date getLastSign() {
+        return lastSign;
     }
 
-    public UserInfo(String openid, String nickname, Integer gender, String city, String country, String province, String avatarurl, Date setTime) {
-        this.openid = openid;
-        this.nickname = nickname;
-        this.gender = gender;
-        this.city = city;
-        this.country = country;
-        this.province = province;
-        this.avatarurl = avatarurl;
-        this.setTime = setTime;
+    public void setLastSign(Date lastSign) {
+        this.lastSign = lastSign;
+    }
+
+    public Integer getSignSum() {
+        return signSum;
+    }
+
+    public void setSignSum(Integer signSum) {
+        this.signSum = signSum;
     }
 }

@@ -35,11 +35,12 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!--<table tableName="userinfo" domainObjectName="UserInfo"/>-->
+        <table tableName="userinfo" domainObjectName="UserInfo"/>
         <!--<table tableName="musicpersonlist" domainObjectName="MusicPersonList"/>-->
         <!--<table tableName="musicpersonmusics" domainObjectName="MusicPersonMusics"/>-->
-        <table tableName="musicvideo" domainObjectName="MusicVideo"/>
+        <!--<table tableName="musicvideo" domainObjectName="MusicVideo"/>-->
         <!--<table tableName="musicinstrument_video" domainObjectName="MusicInstrumentVideo"/>-->
+        <table tableName="signin" domainObjectName="SignIn"/>
 
     </context>
 </generatorConfiguration>

@@ -10,6 +10,8 @@
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="avatarUrl" jdbcType="VARCHAR" property="avatarurl" />
     <result column="set_time" jdbcType="DATE" property="setTime" />
+    <result column="last_sign" jdbcType="TIMESTAMP" property="lastSign" />
+    <result column="sign_sum" jdbcType="INTEGER" property="signSum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    openid, nickName, gender, city, country, province, avatarUrl, set_time
+    openid, nickName, gender, city, country, province, avatarUrl, set_time, last_sign, 
+    sign_sum
   </sql>
   <select id="selectByExample" parameterType="com.zangyi.common.UserInfoExample" resultMap="BaseResultMap">
     select
@@ -95,10 +98,12 @@
   <insert id="insert" parameterType="com.zangyi.common.UserInfo">
     insert into userinfo (openid, nickName, gender, 
       city, country, province, 
-      avatarUrl, set_time)
+      avatarUrl, set_time, last_sign, 
+      sign_sum)
     values (#{openid,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
       #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
-      #{avatarurl,jdbcType=VARCHAR}, #{setTime,jdbcType=DATE})
+      #{avatarurl,jdbcType=VARCHAR}, #{setTime,jdbcType=DATE}, #{lastSign,jdbcType=TIMESTAMP}, 
+      #{signSum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zangyi.common.UserInfo">
     insert into userinfo
@@ -127,6 +132,12 @@
       <if test="setTime != null">
         set_time,
       </if>
+      <if test="lastSign != null">
+        last_sign,
+      </if>
+      <if test="signSum != null">
+        sign_sum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="openid != null">
@@ -152,6 +163,12 @@
       </if>
       <if test="setTime != null">
         #{setTime,jdbcType=DATE},
+      </if>
+      <if test="lastSign != null">
+        #{lastSign,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signSum != null">
+        #{signSum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -188,6 +205,12 @@
       <if test="record.setTime != null">
         set_time = #{record.setTime,jdbcType=DATE},
       </if>
+      <if test="record.lastSign != null">
+        last_sign = #{record.lastSign,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signSum != null">
+        sign_sum = #{record.signSum,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -202,7 +225,9 @@
       country = #{record.country,jdbcType=VARCHAR},
       province = #{record.province,jdbcType=VARCHAR},
       avatarUrl = #{record.avatarurl,jdbcType=VARCHAR},
-      set_time = #{record.setTime,jdbcType=DATE}
+      set_time = #{record.setTime,jdbcType=DATE},
+      last_sign = #{record.lastSign,jdbcType=TIMESTAMP},
+      sign_sum = #{record.signSum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
