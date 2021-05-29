@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService {
                     userInfo.setCountry(userInfoJSON.get("country").toString());
                     userInfo.setProvince(userInfoJSON.get("province").toString());
                     userInfo.setAvatarurl(userInfoJSON.get("avatarUrl").toString());
+                    userInfo.setSignSum(0);
                     userInfo.setSetTime(new Date());
                     //数据库中添加用户相关信息
                     insertUser(userInfo);
