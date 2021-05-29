@@ -39,10 +39,11 @@
         <!--<table tableName="musicpersonlist" domainObjectName="MusicPersonList"/>-->
         <!--<table tableName="musicpersonmusics" dosmainObjectName="MusicPersonMusics"/>-->
         <!--<table tableName="musicvideo" domainObjectName="MusicVideo"/>-->
-        <table tableName="musicinstrument_videos" domainObjectName="MusicInstrumentVideo"/>
-        <table tableName="musicinstrument_pic" domainObjectName="MusicInstrumentPic"/>
+        <!--<table tableName="musicinstrument_videos" domainObjectName="MusicInstrumentVideo"/>-->
+        <!--<table tableName="musicinstrument_pic" domainObjectName="MusicInstrumentPic"/>-->
         <!--<table tableName="signin" domainObjectName="SignIn"/>-->
         <!--<table tableName="dance" domainObjectName="Dance"/>-->
+        <table tableName="clothes_pic" domainObjectName="ClothesPic"/>
 
     </context>
 </generatorConfiguration>

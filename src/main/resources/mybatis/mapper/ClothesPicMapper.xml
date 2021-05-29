@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zangyi.mapper.ClothesPicMapper">
+  <resultMap id="BaseResultMap" type="com.zangyi.common.ClothesPic">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="clothes_id" jdbcType="VARCHAR" property="clothesId" />
+    <result column="zang_name" jdbcType="VARCHAR" property="zangName" />
+    <result column="han_name" jdbcType="VARCHAR" property="hanName" />
+    <result column="clothes_pic" jdbcType="VARCHAR" property="clothesPic" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, clothes_id, zang_name, han_name, clothes_pic
+  </sql>
+  <select id="selectByExample" parameterType="com.zangyi.common.ClothesPicExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clothes_pic
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zangyi.common.ClothesPicExample">
+    delete from clothes_pic
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zangyi.common.ClothesPic">
+    insert into clothes_pic (id, clothes_id, zang_name, 
+      han_name, clothes_pic)
+    values (#{id,jdbcType=INTEGER}, #{clothesId,jdbcType=VARCHAR}, #{zangName,jdbcType=VARCHAR}, 
+      #{hanName,jdbcType=VARCHAR}, #{clothesPic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zangyi.common.ClothesPic">
+    insert into clothes_pic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="clothesId != null">
+        clothes_id,
+      </if>
+      <if test="zangName != null">
+        zang_name,
+      </if>
+      <if test="hanName != null">
+        han_name,
+      </if>
+      <if test="clothesPic != null">
+        clothes_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clothesId != null">
+        #{clothesId,jdbcType=VARCHAR},
+      </if>
+      <if test="zangName != null">
+        #{zangName,jdbcType=VARCHAR},
+      </if>
+      <if test="hanName != null">
+        #{hanName,jdbcType=VARCHAR},
+      </if>
+      <if test="clothesPic != null">
+        #{clothesPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zangyi.common.ClothesPicExample" resultType="java.lang.Long">
+    select count(*) from clothes_pic
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update clothes_pic
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clothesId != null">
+        clothes_id = #{record.clothesId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zangName != null">
+        zang_name = #{record.zangName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hanName != null">
+        han_name = #{record.hanName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clothesPic != null">
+        clothes_pic = #{record.clothesPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update clothes_pic
+    set id = #{record.id,jdbcType=INTEGER},
+      clothes_id = #{record.clothesId,jdbcType=VARCHAR},
+      zang_name = #{record.zangName,jdbcType=VARCHAR},
+      han_name = #{record.hanName,jdbcType=VARCHAR},
+      clothes_pic = #{record.clothesPic,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
