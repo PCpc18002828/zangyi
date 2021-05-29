@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zangyi.mapper.ZangXiPicMapper">
+  <resultMap id="BaseResultMap" type="com.zangyi.common.ZangXiPic">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="musical_img" jdbcType="VARCHAR" property="musicalImg" />
+    <result column="name_zang" jdbcType="VARCHAR" property="nameZang" />
+    <result column="name_han" jdbcType="VARCHAR" property="nameHan" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, musical_img, name_zang, name_han
+  </sql>
+  <select id="selectByExample" parameterType="com.zangyi.common.ZangXiPicExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zangxi_pic
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zangyi.common.ZangXiPicExample">
+    delete from zangxi_pic
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zangyi.common.ZangXiPic">
+    insert into zangxi_pic (id, musical_img, name_zang, 
+      name_han)
+    values (#{id,jdbcType=INTEGER}, #{musicalImg,jdbcType=VARCHAR}, #{nameZang,jdbcType=VARCHAR}, 
+      #{nameHan,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zangyi.common.ZangXiPic">
+    insert into zangxi_pic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="musicalImg != null">
+        musical_img,
+      </if>
+      <if test="nameZang != null">
+        name_zang,
+      </if>
+      <if test="nameHan != null">
+        name_han,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="musicalImg != null">
+        #{musicalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nameZang != null">
+        #{nameZang,jdbcType=VARCHAR},
+      </if>
+      <if test="nameHan != null">
+        #{nameHan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zangyi.common.ZangXiPicExample" resultType="java.lang.Long">
+    select count(*) from zangxi_pic
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update zangxi_pic
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.musicalImg != null">
+        musical_img = #{record.musicalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameZang != null">
+        name_zang = #{record.nameZang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameHan != null">
+        name_han = #{record.nameHan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update zangxi_pic
+    set id = #{record.id,jdbcType=INTEGER},
+      musical_img = #{record.musicalImg,jdbcType=VARCHAR},
+      name_zang = #{record.nameZang,jdbcType=VARCHAR},
+      name_han = #{record.nameHan,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
