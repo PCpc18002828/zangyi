@@ -683,52 +683,52 @@ public class UserInfoExample {
         }
 
         public Criteria andLastSignEqualTo(Date value) {
-            addCriterion("last_sign =", value, "lastSign");
+            addCriterionForJDBCDate("last_sign =", value, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignNotEqualTo(Date value) {
-            addCriterion("last_sign <>", value, "lastSign");
+            addCriterionForJDBCDate("last_sign <>", value, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignGreaterThan(Date value) {
-            addCriterion("last_sign >", value, "lastSign");
+            addCriterionForJDBCDate("last_sign >", value, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_sign >=", value, "lastSign");
+            addCriterionForJDBCDate("last_sign >=", value, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignLessThan(Date value) {
-            addCriterion("last_sign <", value, "lastSign");
+            addCriterionForJDBCDate("last_sign <", value, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignLessThanOrEqualTo(Date value) {
-            addCriterion("last_sign <=", value, "lastSign");
+            addCriterionForJDBCDate("last_sign <=", value, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignIn(List<Date> values) {
-            addCriterion("last_sign in", values, "lastSign");
+            addCriterionForJDBCDate("last_sign in", values, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignNotIn(List<Date> values) {
-            addCriterion("last_sign not in", values, "lastSign");
+            addCriterionForJDBCDate("last_sign not in", values, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignBetween(Date value1, Date value2) {
-            addCriterion("last_sign between", value1, value2, "lastSign");
+            addCriterionForJDBCDate("last_sign between", value1, value2, "lastSign");
             return (Criteria) this;
         }
 
         public Criteria andLastSignNotBetween(Date value1, Date value2) {
-            addCriterion("last_sign not between", value1, value2, "lastSign");
+            addCriterionForJDBCDate("last_sign not between", value1, value2, "lastSign");
             return (Criteria) this;
         }
 

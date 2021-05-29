@@ -3,11 +3,9 @@ package com.zangyi.mapper;
 import com.zangyi.common.UserInfo;
 import com.zangyi.common.UserInfoExample;
 import java.util.List;
-
-import com.zangyi.mapper.extend.UserInfoExtendMapper;
 import org.apache.ibatis.annotations.Param;
 
-public interface UserInfoMapper extends UserInfoExtendMapper {
+public interface UserInfoMapper {
     long countByExample(UserInfoExample example);
 
     int deleteByExample(UserInfoExample example);

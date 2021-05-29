@@ -40,7 +40,8 @@
         <!--<table tableName="musicpersonmusics" domainObjectName="MusicPersonMusics"/>-->
         <!--<table tableName="musicvideo" domainObjectName="MusicVideo"/>-->
         <!--<table tableName="musicinstrument_video" domainObjectName="MusicInstrumentVideo"/>-->
-        <table tableName="signin" domainObjectName="SignIn"/>
+        <!--<table tableName="signin" domainObjectName="SignIn"/>-->
+        <table tableName="dance" domainObjectName="Dance"/>
 
     </context>
 </generatorConfiguration>

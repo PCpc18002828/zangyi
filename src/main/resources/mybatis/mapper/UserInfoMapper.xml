@@ -10,7 +10,7 @@
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="avatarUrl" jdbcType="VARCHAR" property="avatarurl" />
     <result column="set_time" jdbcType="DATE" property="setTime" />
-    <result column="last_sign" jdbcType="TIMESTAMP" property="lastSign" />
+    <result column="last_sign" jdbcType="DATE" property="lastSign" />
     <result column="sign_sum" jdbcType="INTEGER" property="signSum" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -102,7 +102,7 @@
       sign_sum)
     values (#{openid,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
       #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
-      #{avatarurl,jdbcType=VARCHAR}, #{setTime,jdbcType=DATE}, #{lastSign,jdbcType=TIMESTAMP}, 
+      #{avatarurl,jdbcType=VARCHAR}, #{setTime,jdbcType=DATE}, #{lastSign,jdbcType=DATE}, 
       #{signSum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zangyi.common.UserInfo">
@@ -165,7 +165,7 @@
         #{setTime,jdbcType=DATE},
       </if>
       <if test="lastSign != null">
-        #{lastSign,jdbcType=TIMESTAMP},
+        #{lastSign,jdbcType=DATE},
       </if>
       <if test="signSum != null">
         #{signSum,jdbcType=INTEGER},
@@ -206,7 +206,7 @@
         set_time = #{record.setTime,jdbcType=DATE},
       </if>
       <if test="record.lastSign != null">
-        last_sign = #{record.lastSign,jdbcType=TIMESTAMP},
+        last_sign = #{record.lastSign,jdbcType=DATE},
       </if>
       <if test="record.signSum != null">
         sign_sum = #{record.signSum,jdbcType=INTEGER},
@@ -226,7 +226,7 @@
       province = #{record.province,jdbcType=VARCHAR},
       avatarUrl = #{record.avatarurl,jdbcType=VARCHAR},
       set_time = #{record.setTime,jdbcType=DATE},
-      last_sign = #{record.lastSign,jdbcType=TIMESTAMP},
+      last_sign = #{record.lastSign,jdbcType=DATE},
       sign_sum = #{record.signSum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
