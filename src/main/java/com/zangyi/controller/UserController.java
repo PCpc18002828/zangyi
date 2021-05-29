@@ -1,6 +1,7 @@
 package com.zangyi.controller;
 
 
+import com.zangyi.common.UserInfo;
 import com.zangyi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,5 +53,11 @@ public class UserController {
     @ResponseBody
     public Integer signIn(String nickName) {
         return userService.signIn(nickName);
+    }
+
+    @RequestMapping("/getSignIn")
+    @ResponseBody
+    public Map<String,Object> getSignIn(String nickName){
+        return userService.getSignIn(nickName);
     }
 }

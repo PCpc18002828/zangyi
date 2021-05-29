@@ -1,5 +1,7 @@
 package com.zangyi.service;
 
+import com.zangyi.common.UserInfo;
+
 import java.util.Map;
 
 public interface UserService {
@@ -10,4 +12,6 @@ public interface UserService {
     public void insertUser(UserInfo userInfo);
 
     Integer signIn(String nickName);
+
+    Map<String, Object> getSignIn(String nickName);
 }

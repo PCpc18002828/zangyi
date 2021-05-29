@@ -1,6 +1,12 @@
 package com.zangyi.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zangyi.common.SignIn;
+import com.zangyi.common.SignInExample;
+import com.zangyi.common.UserInfo;
+import com.zangyi.common.UserInfoExample;
+import com.zangyi.mapper.SignInMapper;
+import com.zangyi.mapper.UserInfoMapper;
 import com.zangyi.service.UserService;
 import com.zangyi.utils.AesCbcUtil;
 import com.zangyi.utils.HttpRequest;
@@ -8,15 +14,15 @@ import com.zangyi.utils.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
-public class  UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
     UserInfoMapper userInfoMapper;
+    @Autowired
+    SignInMapper signInMapper;
 
     @Override
     public Map<String, Object> wxLogin(String encryptedData, String iv, String code) {
@@ -67,7 +73,7 @@ public class  UserServiceImpl implements UserService {
                     map.put("msg", "解密成功");
                     JSONObject userInfoJSON = JSONObject.parseObject(JSONObject.toJSONString(result));
                     UserInfo userInfo = new UserInfo();
-                    System.out.println("userJson"+userInfoJSON);
+                    System.out.println("userJson" + userInfoJSON);
                     userInfo.setOpenid(userInfoJSON.get("openId").toString());
                     userInfo.setNickname(userInfoJSON.get("nickName").toString());
                     userInfo.setGender(Integer.parseInt(userInfoJSON.get("gender").toString()));
@@ -123,7 +129,55 @@ public class  UserServiceImpl implements UserService {
 
     @Override
     public Integer signIn(String nickName) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date nowDay = new Date();
+        String sNowDay = simpleDateFormat.format(nowDay);
+        String sLastDay = "";
+        UserInfoExample userInfoExample = new UserInfoExample();
+        userInfoExample.createCriteria().andNicknameEqualTo(nickName);
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoExample);
+        sLastDay = simpleDateFormat.format(userInfos.get(0).getLastSign());
+        if (sNowDay.equals(sLastDay)) {
+            return 1;
+        }
+//      更新用户表签到记录
+        UserInfo userInfo = new UserInfo();
+        userInfo.setLastSign(nowDay);
+        userInfo.setSignSum(userInfos.get(0).getSignSum() + 1);
+        userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
+//       签到表添加记录
+        SignIn signIn = new SignIn();
+        signIn.setNickname(nickName);
+        signIn.setDays(nowDay);
+        signInMapper.insertSelective(signIn);
+        return 0;
+    }
 
-        return null;
+    @Override
+    public Map<String, Object> getSignIn(String nickName) {
+        Map<String,Object> map = new HashMap<String, Object>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormatd = new SimpleDateFormat("MM");
+        int nowMonth =Integer.parseInt(simpleDateFormatd.format(new Date()));
+        String[] sign = new String[31];
+        SignInExample signInExample = new SignInExample();
+        signInExample.createCriteria().andNicknameEqualTo(nickName);
+        List<SignIn> signIns = signInMapper.selectByExample(signInExample);
+
+        for (int i = signIns.size()-1, j = 31; i >= 0&&j>=0; i--,j--) {
+            String signDay = simpleDateFormat.format(signIns.get(i).getDays());
+            String[] split = signDay.split("-");
+            int month = Integer.parseInt(split[1]);
+            int day =Integer.parseInt(split[2]);
+            if(month==nowMonth){
+                sign[day-1] =signDay;
+            }
+        }
+        map.put("signUp",sign);
+        UserInfoExample userInfoExample =new UserInfoExample();
+        userInfoExample.createCriteria().andNicknameEqualTo(nickName);
+        UserInfo userInfo = userInfoMapper.selectByExample(userInfoExample).get(0);
+        map.put("count",userInfo.getSignSum());
+        return map;
     }
 }
