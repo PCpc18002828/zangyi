@@ -1,5 +1,6 @@
 package com.zangyi.controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.zangyi.mapper.DanceMapper;
 import com.zangyi.service.DanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class DanceController {
      */
     @RequestMapping("/getDanceList")
     @ResponseBody
-    public Map<String,Object> getDanceList(){
+    public Map<String,Object> getDanceList() throws ClientException {
         return danceService.getDancelist();
     }
 }

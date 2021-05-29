@@ -1,6 +1,7 @@
 package com.zangyi.service;
 
 import com.aliyuncs.exceptions.ClientException;
+import com.zangyi.common.MusicInstrumentVideo;
 import com.zangyi.common.MusicPersonList;
 import com.zangyi.common.MusicPersonMusics;
 import com.zangyi.common.MusicVideo;
@@ -17,5 +18,7 @@ public interface MusicService {
 
     List<MusicVideo> getVideos() throws ClientException;
 
-    List<Map<String, Object>> getInstrumentVideo() throws ClientException;
+    List<MusicInstrumentVideo> getInstrumentVideo() throws ClientException;
+
+    Map<String, Object> instrumentContent();
 }

@@ -2,10 +2,7 @@ package com.zangyi.service.impl;
 
 import com.aliyuncs.exceptions.ClientException;
 import com.zangyi.common.*;
-import com.zangyi.mapper.MusicInstrumentVideoMapper;
-import com.zangyi.mapper.MusicPersonListMapper;
-import com.zangyi.mapper.MusicPersonMusicsMapper;
-import com.zangyi.mapper.MusicVideoMapper;
+import com.zangyi.mapper.*;
 import com.zangyi.service.MusicService;
 import com.zangyi.utils.VideoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,8 @@ public class MusciServiceImpl implements MusicService {
     MusicVideoMapper musicVideoMapper;
     @Autowired
     MusicInstrumentVideoMapper musicInstrumentVideoMapper;
+    @Autowired
+    MusicInstrumentPicMapper musicInstrumentPicMapper;
 
     @Override
     public List<MusicPersonList> personListBoy() {
@@ -63,25 +62,24 @@ public class MusciServiceImpl implements MusicService {
     }
 
     @Override
-    public List<Map<String, Object>> getInstrumentVideo() throws ClientException {
-        List<Map<String,Object>> list = new ArrayList<Map<String, Object>>();
-        for (int i = 1; i <= 5; i++) {
-            MusicInstrumentVideoExample musicInstrumentVideoExample = new MusicInstrumentVideoExample();
-            musicInstrumentVideoExample.createCriteria().andClassidEqualTo(i);
-            List<MusicInstrumentVideo> musicInstrumentVideos = musicInstrumentVideoMapper.selectByExample(musicInstrumentVideoExample);
-            Map <String,Object> map =new HashMap<>();
-            map.put("classId",i);
-            map.put("musicInstrument",musicInstrumentVideos.get(0).getMusicalinstrument());
-            String [] videoNames = new  String [musicInstrumentVideos.size()];
-            String [] urls = new  String [musicInstrumentVideos.size()];
-            for (int j = 0; j <videoNames.length ; j++) {
-                videoNames[j]=musicInstrumentVideos.get(j).getName();
-                urls[j]=VideoConfig.getPlayInfo(musicInstrumentVideos.get(j).getUrlid());
-            }
-            map.put("videoNames",videoNames);
-            map.put("urls",urls);
-            list.add(map);
+    public List<MusicInstrumentVideo> getInstrumentVideo() throws ClientException {
+        List<MusicInstrumentVideo> musicInstrumentVideos = musicInstrumentVideoMapper.selectByExample(null);
+        for (int i = 0; i <musicInstrumentVideos.size() ; i++) {
+             musicInstrumentVideos.get(i).setVideoId(VideoConfig.getPlayInfo(musicInstrumentVideos.get(i).getVideoId()));
         }
-        return list;
+        return musicInstrumentVideos;
+    }
+
+    @Override
+    public Map<String, Object> instrumentContent() {
+        Map<String,Object> map =new HashMap<String, Object>();
+        String [] clazz ={"打击乐器","弹弦乐器","拉弦器乐","吹管器乐"};
+        for (int i = 0; i <clazz.length ; i++) {
+            MusicInstrumentPicExample musicInstrumentPicExample =new MusicInstrumentPicExample();
+            musicInstrumentPicExample.createCriteria().andClassIdEqualTo(clazz[i]);
+            List<MusicInstrumentPic> musicInstrumentPics = musicInstrumentPicMapper.selectByExample(musicInstrumentPicExample);
+            map.put(clazz[i],musicInstrumentPics);
+        }
+        return map;
     }
 }

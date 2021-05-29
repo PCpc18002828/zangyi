@@ -1,6 +1,7 @@
 package com.zangyi.controller;
 
 import com.aliyuncs.exceptions.ClientException;
+import com.zangyi.common.MusicInstrumentVideo;
 import com.zangyi.common.MusicPersonList;
 import com.zangyi.common.MusicPersonMusics;
 import com.zangyi.common.MusicVideo;
@@ -64,18 +65,21 @@ public class MusicController {
         return musicService.getVideos();
     }
     /**
-     * 乐器视频
-     * list<Map<String,Object>>结构:
-     * key为:
-     * classId: int
-     * musicInstrument: String
-     * videoNames:[]该类乐器视频名
-     * urls：[]视频地址与videoNames对应
+     * 获取所有乐器视频
+     *
       * @return
      */
     @RequestMapping("/instrumentVideo")
     @ResponseBody
-    public List<Map<String,Object>> getInstrumentVideo() throws ClientException {
+    public List<MusicInstrumentVideo> getInstrumentVideo() throws ClientException {
         return musicService.getInstrumentVideo();
+    }
+    /**
+     * 获取各类乐器图片及其内容
+      */
+    @RequestMapping("/instrumentContent")
+    @ResponseBody
+    public Map<String,Object> instrumentContent(){
+        return musicService.instrumentContent();
     }
 }

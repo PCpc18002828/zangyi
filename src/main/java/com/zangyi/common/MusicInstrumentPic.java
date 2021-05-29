@@ -1,9 +1,11 @@
 package com.zangyi.common;
 
-public class MusicInstrumentVideo {
+public class MusicInstrumentPic {
     private Integer id;
 
-    private String videoId;
+    private String classId;
+
+    private String musicalImg;
 
     private String nameZang;
 
@@ -17,12 +19,20 @@ public class MusicInstrumentVideo {
         this.id = id;
     }
 
-    public String getVideoId() {
-        return videoId;
+    public String getClassId() {
+        return classId;
     }
 
-    public void setVideoId(String videoId) {
-        this.videoId = videoId == null ? null : videoId.trim();
+    public void setClassId(String classId) {
+        this.classId = classId == null ? null : classId.trim();
+    }
+
+    public String getMusicalImg() {
+        return musicalImg;
+    }
+
+    public void setMusicalImg(String musicalImg) {
+        this.musicalImg = musicalImg == null ? null : musicalImg.trim();
     }
 
     public String getNameZang() {

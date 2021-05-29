@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zangyi.mapper.MusicInstrumentVideoMapper">
-  <resultMap id="BaseResultMap" type="com.zangyi.common.MusicInstrumentVideo">
+<mapper namespace="com.zangyi.mapper.MusicInstrumentPicMapper">
+  <resultMap id="BaseResultMap" type="com.zangyi.common.MusicInstrumentPic">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="class_id" jdbcType="VARCHAR" property="classId" />
+    <result column="musical_img" jdbcType="VARCHAR" property="musicalImg" />
     <result column="name_zang" jdbcType="VARCHAR" property="nameZang" />
     <result column="name_han" jdbcType="VARCHAR" property="nameHan" />
   </resultMap>
@@ -66,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, video_id, name_zang, name_han
+    id, class_id, musical_img, name_zang, name_han
   </sql>
-  <select id="selectByExample" parameterType="com.zangyi.common.MusicInstrumentVideoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.zangyi.common.MusicInstrumentPicExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from musicinstrument_videos
+    from musicinstrument_pic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,26 +83,29 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.zangyi.common.MusicInstrumentVideoExample">
-    delete from musicinstrument_videos
+  <delete id="deleteByExample" parameterType="com.zangyi.common.MusicInstrumentPicExample">
+    delete from musicinstrument_pic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zangyi.common.MusicInstrumentVideo">
-    insert into musicinstrument_videos (id, video_id, name_zang, 
-      name_han)
-    values (#{id,jdbcType=INTEGER}, #{videoId,jdbcType=VARCHAR}, #{nameZang,jdbcType=VARCHAR}, 
-      #{nameHan,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.zangyi.common.MusicInstrumentPic">
+    insert into musicinstrument_pic (id, class_id, musical_img, 
+      name_zang, name_han)
+    values (#{id,jdbcType=INTEGER}, #{classId,jdbcType=VARCHAR}, #{musicalImg,jdbcType=VARCHAR}, 
+      #{nameZang,jdbcType=VARCHAR}, #{nameHan,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zangyi.common.MusicInstrumentVideo">
-    insert into musicinstrument_videos
+  <insert id="insertSelective" parameterType="com.zangyi.common.MusicInstrumentPic">
+    insert into musicinstrument_pic
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="videoId != null">
-        video_id,
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="musicalImg != null">
+        musical_img,
       </if>
       <if test="nameZang != null">
         name_zang,
@@ -114,8 +118,11 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="videoId != null">
-        #{videoId,jdbcType=VARCHAR},
+      <if test="classId != null">
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="musicalImg != null">
+        #{musicalImg,jdbcType=VARCHAR},
       </if>
       <if test="nameZang != null">
         #{nameZang,jdbcType=VARCHAR},
@@ -125,20 +132,23 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zangyi.common.MusicInstrumentVideoExample" resultType="java.lang.Long">
-    select count(*) from musicinstrument_videos
+  <select id="countByExample" parameterType="com.zangyi.common.MusicInstrumentPicExample" resultType="java.lang.Long">
+    select count(*) from musicinstrument_pic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update musicinstrument_videos
+    update musicinstrument_pic
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.videoId != null">
-        video_id = #{record.videoId,jdbcType=VARCHAR},
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.musicalImg != null">
+        musical_img = #{record.musicalImg,jdbcType=VARCHAR},
       </if>
       <if test="record.nameZang != null">
         name_zang = #{record.nameZang,jdbcType=VARCHAR},
@@ -152,9 +162,10 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update musicinstrument_videos
+    update musicinstrument_pic
     set id = #{record.id,jdbcType=INTEGER},
-      video_id = #{record.videoId,jdbcType=VARCHAR},
+      class_id = #{record.classId,jdbcType=VARCHAR},
+      musical_img = #{record.musicalImg,jdbcType=VARCHAR},
       name_zang = #{record.nameZang,jdbcType=VARCHAR},
       name_han = #{record.nameHan,jdbcType=VARCHAR}
     <if test="_parameter != null">

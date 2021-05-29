@@ -3,14 +3,14 @@ package com.zangyi.common;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicInstrumentVideoExample {
+public class MusicInstrumentPicExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MusicInstrumentVideoExample() {
+    public MusicInstrumentPicExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,73 +164,143 @@ public class MusicInstrumentVideoExample {
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdIsNull() {
-            addCriterion("video_id is null");
+        public Criteria andClassIdIsNull() {
+            addCriterion("class_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdIsNotNull() {
-            addCriterion("video_id is not null");
+        public Criteria andClassIdIsNotNull() {
+            addCriterion("class_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdEqualTo(String value) {
-            addCriterion("video_id =", value, "videoId");
+        public Criteria andClassIdEqualTo(String value) {
+            addCriterion("class_id =", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdNotEqualTo(String value) {
-            addCriterion("video_id <>", value, "videoId");
+        public Criteria andClassIdNotEqualTo(String value) {
+            addCriterion("class_id <>", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdGreaterThan(String value) {
-            addCriterion("video_id >", value, "videoId");
+        public Criteria andClassIdGreaterThan(String value) {
+            addCriterion("class_id >", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdGreaterThanOrEqualTo(String value) {
-            addCriterion("video_id >=", value, "videoId");
+        public Criteria andClassIdGreaterThanOrEqualTo(String value) {
+            addCriterion("class_id >=", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdLessThan(String value) {
-            addCriterion("video_id <", value, "videoId");
+        public Criteria andClassIdLessThan(String value) {
+            addCriterion("class_id <", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdLessThanOrEqualTo(String value) {
-            addCriterion("video_id <=", value, "videoId");
+        public Criteria andClassIdLessThanOrEqualTo(String value) {
+            addCriterion("class_id <=", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdLike(String value) {
-            addCriterion("video_id like", value, "videoId");
+        public Criteria andClassIdLike(String value) {
+            addCriterion("class_id like", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdNotLike(String value) {
-            addCriterion("video_id not like", value, "videoId");
+        public Criteria andClassIdNotLike(String value) {
+            addCriterion("class_id not like", value, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdIn(List<String> values) {
-            addCriterion("video_id in", values, "videoId");
+        public Criteria andClassIdIn(List<String> values) {
+            addCriterion("class_id in", values, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdNotIn(List<String> values) {
-            addCriterion("video_id not in", values, "videoId");
+        public Criteria andClassIdNotIn(List<String> values) {
+            addCriterion("class_id not in", values, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdBetween(String value1, String value2) {
-            addCriterion("video_id between", value1, value2, "videoId");
+        public Criteria andClassIdBetween(String value1, String value2) {
+            addCriterion("class_id between", value1, value2, "classId");
             return (Criteria) this;
         }
 
-        public Criteria andVideoIdNotBetween(String value1, String value2) {
-            addCriterion("video_id not between", value1, value2, "videoId");
+        public Criteria andClassIdNotBetween(String value1, String value2) {
+            addCriterion("class_id not between", value1, value2, "classId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgIsNull() {
+            addCriterion("musical_img is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgIsNotNull() {
+            addCriterion("musical_img is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgEqualTo(String value) {
+            addCriterion("musical_img =", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgNotEqualTo(String value) {
+            addCriterion("musical_img <>", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgGreaterThan(String value) {
+            addCriterion("musical_img >", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgGreaterThanOrEqualTo(String value) {
+            addCriterion("musical_img >=", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgLessThan(String value) {
+            addCriterion("musical_img <", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgLessThanOrEqualTo(String value) {
+            addCriterion("musical_img <=", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgLike(String value) {
+            addCriterion("musical_img like", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgNotLike(String value) {
+            addCriterion("musical_img not like", value, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgIn(List<String> values) {
+            addCriterion("musical_img in", values, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgNotIn(List<String> values) {
+            addCriterion("musical_img not in", values, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgBetween(String value1, String value2) {
+            addCriterion("musical_img between", value1, value2, "musicalImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andMusicalImgNotBetween(String value1, String value2) {
+            addCriterion("musical_img not between", value1, value2, "musicalImg");
             return (Criteria) this;
         }
 
