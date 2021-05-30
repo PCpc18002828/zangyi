@@ -102,4 +102,20 @@ public class UserInfo {
     public void setSignSum(Integer signSum) {
         this.signSum = signSum;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "openid='" + openid + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", gender=" + gender +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", province='" + province + '\'' +
+                ", avatarurl='" + avatarurl + '\'' +
+                ", setTime=" + setTime +
+                ", lastSign=" + lastSign +
+                ", signSum=" + signSum +
+                '}';
+    }
 }

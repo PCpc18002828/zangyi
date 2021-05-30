@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
             try {
                 System.out.println("——————————————————解密————————————————————————");
                 Map<String, String> result = AesCbcUtil.decrypt(encryptedData, session_key, iv);
+                System.out.println(result);
                 if (null != result && result.size() > 0) {
                     map.put("status", 1);
                     map.put("msg", "解密成功");
@@ -83,6 +84,7 @@ public class UserServiceImpl implements UserService {
                     userInfo.setAvatarurl(userInfoJSON.get("avatarUrl").toString());
                     userInfo.setSignSum(0);
                     userInfo.setSetTime(new Date());
+                    System.out.println(userInfo);
                     //数据库中添加用户相关信息
                     insertUser(userInfo);
                     map.put("userInfo", userInfo);
