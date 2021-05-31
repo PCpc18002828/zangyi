@@ -141,7 +141,8 @@ public class UserServiceImpl implements UserService {
         UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andNicknameEqualTo(nickName);
         List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoExample);
-        sLastDay = simpleDateFormat.format(userInfos.get(0).getLastSign());
+
+        sLastDay = userInfos.get(0).getLastSign()==null ? simpleDateFormat.format(nowDay):simpleDateFormat.format(userInfos.get(0).getLastSign());
         if (sNowDay.equals(sLastDay)) {
             return 1;
         }
