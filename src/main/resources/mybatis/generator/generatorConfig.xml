@@ -48,5 +48,7 @@
         <!--<table tableName="zangxi_pic" domainObjectName="ZangXiPic"/>-->
         <!--<table tableName="zangxi_video" domainObjectName="ZangXiVideo"/>-->
         <!--<table tableName="calligraphy_video" domainObjectName="CalligraphyVideo"/>-->
+        <table tableName="img" domainObjectName="Img"/>
+
     </context>
 </generatorConfiguration>
