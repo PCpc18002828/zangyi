@@ -2,7 +2,9 @@ package com.zangyi.controller;
 
 
 import com.zangyi.common.UserInfo;
+import com.zangyi.common.extend.UserInfoBase;
 import com.zangyi.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +41,8 @@ public class UserController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, Object> login(String encryptedData, String iv, String code) {
-        return userService.wxLogin(encryptedData, iv, code);
+    public Map<String, Object> login(String encryptedData, String iv, String code,@Param("userInfo") UserInfoBase userInfoBase) {
+        return userService.wxLogin(encryptedData, iv, code,userInfoBase);
     }
 
     /**

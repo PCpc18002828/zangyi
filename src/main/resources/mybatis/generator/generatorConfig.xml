@@ -44,7 +44,7 @@
         <!--<table tableName="signin" domainObjectName="SignIn"/>-->
         <!--<table tableName="dance" domainObjectName="Dance"/>-->
         <!--<table tableName="clothes_pic" domainObjectName="ClothesPic"/>-->
-        <table tableName="clothes_video" domainObjectName="ClothesVideo"/>
+        <!--<table tableName="clothes_video" domainObjectName="ClothesVideo"/>-->
         <!--<table tableName="zangxi_pic" domainObjectName="ZangXiPic"/>-->
         <!--<table tableName="zangxi_video" domainObjectName="ZangXiVideo"/>-->
         <!--<table tableName="calligraphy_video" domainObjectName="CalligraphyVideo"/>-->

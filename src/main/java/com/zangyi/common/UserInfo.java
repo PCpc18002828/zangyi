@@ -28,7 +28,7 @@ public class UserInfo {
     }
 
     public void setOpenid(String openid) {
-        this.openid = openid == null ? null : openid.trim();
+        this.openid = openid;
     }
 
     public String getNickname() {
@@ -36,7 +36,7 @@ public class UserInfo {
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+        this.nickname = nickname;
     }
 
     public Integer getGender() {
@@ -52,7 +52,7 @@ public class UserInfo {
     }
 
     public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+        this.city = city;
     }
 
     public String getCountry() {
@@ -60,7 +60,7 @@ public class UserInfo {
     }
 
     public void setCountry(String country) {
-        this.country = country == null ? null : country.trim();
+        this.country = country;
     }
 
     public String getProvince() {
@@ -68,7 +68,7 @@ public class UserInfo {
     }
 
     public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
+        this.province = province;
     }
 
     public String getAvatarurl() {
@@ -76,7 +76,7 @@ public class UserInfo {
     }
 
     public void setAvatarurl(String avatarurl) {
-        this.avatarurl = avatarurl == null ? null : avatarurl.trim();
+        this.avatarurl = avatarurl;
     }
 
     public Date getSetTime() {
@@ -103,19 +103,20 @@ public class UserInfo {
         this.signSum = signSum;
     }
 
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "openid='" + openid + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", gender=" + gender +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                ", province='" + province + '\'' +
-                ", avatarurl='" + avatarurl + '\'' +
-                ", setTime=" + setTime +
-                ", lastSign=" + lastSign +
-                ", signSum=" + signSum +
-                '}';
+    public UserInfo(String openid, String nickname, Integer gender, String city, String country, String province, String avatarurl, Date setTime, Date lastSign, Integer signSum) {
+        this.openid = openid;
+        this.nickname = nickname;
+        this.gender = gender;
+        this.city = city;
+        this.country = country;
+        this.province = province;
+        this.avatarurl = avatarurl;
+        this.setTime = setTime;
+        this.lastSign = lastSign;
+        this.signSum = signSum;
     }
+
+    public UserInfo() {
+    }
+
 }

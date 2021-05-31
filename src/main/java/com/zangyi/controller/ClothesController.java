@@ -1,5 +1,6 @@
 package com.zangyi.controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.zangyi.common.ClothesVideo;
 import com.zangyi.service.ClothesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class ClothesController {
 
     @RequestMapping("/videoList")
     @ResponseBody
-    public List<ClothesVideo> videoList() {
+    public List<ClothesVideo> videoList() throws ClientException {
         return clothesService.videoList();
     }
 

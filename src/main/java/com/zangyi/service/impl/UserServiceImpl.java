@@ -5,6 +5,7 @@ import com.zangyi.common.SignIn;
 import com.zangyi.common.SignInExample;
 import com.zangyi.common.UserInfo;
 import com.zangyi.common.UserInfoExample;
+import com.zangyi.common.extend.UserInfoBase;
 import com.zangyi.mapper.SignInMapper;
 import com.zangyi.mapper.UserInfoMapper;
 import com.zangyi.service.UserService;
@@ -25,7 +26,8 @@ public class UserServiceImpl implements UserService {
     SignInMapper signInMapper;
 
     @Override
-    public Map<String, Object> wxLogin(String encryptedData, String iv, String code) {
+    public Map<String, Object> wxLogin(String encryptedData, String iv, String code, UserInfoBase userInfoBase) {
+        System.out.println("userInfo"+userInfoBase.toString());
         System.out.println("this is encry:" + encryptedData + "\n This is iv:" + iv);
         Map map = new HashMap();
 
@@ -75,7 +77,7 @@ public class UserServiceImpl implements UserService {
                     JSONObject userInfoJSON = JSONObject.parseObject(JSONObject.toJSONString(result));
                     UserInfo userInfo = new UserInfo();
                     System.out.println("userJson" + userInfoJSON);
-                    userInfo.setOpenid(userInfoJSON.get("openId").toString());
+                    userInfo.setOpenid(openid);
                     userInfo.setNickname(userInfoJSON.get("nickName").toString());
                     userInfo.setGender(Integer.parseInt(userInfoJSON.get("gender").toString()));
                     userInfo.setCity(userInfoJSON.get("city").toString());
