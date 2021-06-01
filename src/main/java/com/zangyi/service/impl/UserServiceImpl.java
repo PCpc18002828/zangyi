@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
         System.out.println("This is code:" + code);
         //1.向微信服务器 使用微信登录凭证code获取session_key和openid
         //请求参数
-        String appid = "wxebe558f7fd21181c";
-        String secret = "12f5e023bd74e11dddccfd051e249130";
+        String appid = "wx865c11bc5d415833";
+        String secret = "e0ad262585abd3afffd053072e53dd72";
         String url = "https://api.weixin.qq.com/sns/jscode2session?" +
                 "appid=" + appid + "" +
                 "&secret=" + secret + "" +
