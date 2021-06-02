@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
         //请求参数
         String appid = "wx865c11bc5d415833";
         String secret = "e0ad262585abd3afffd053072e53dd72";
+//        String appid = "wx6ceb74650d7696f7";
+//        String secret = "f6797c4e236d6c2b45ef50065d51f635";
         String url = "https://api.weixin.qq.com/sns/jscode2session?" +
                 "appid=" + appid + "" +
                 "&secret=" + secret + "" +
