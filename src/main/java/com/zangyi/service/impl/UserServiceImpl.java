@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> wxLogin(String encryptedData, String iv, String code, UserInfoBase userInfoBase) {
-        System.out.println("userInfo"+userInfoBase.toString());
+        System.out.println("userInfo" + userInfoBase.toString());
         System.out.println("this is encry:" + encryptedData + "\n This is iv:" + iv);
         Map map = new HashMap();
 
@@ -143,49 +143,65 @@ public class UserServiceImpl implements UserService {
         UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andNicknameEqualTo(nickName);
         List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoExample);
-
-        sLastDay = userInfos.get(0).getLastSign()==null ? simpleDateFormat.format(nowDay):simpleDateFormat.format(userInfos.get(0).getLastSign());
-        if (sNowDay.equals(sLastDay)) {
-            return 1;
+        System.out.println("lastSign:" + userInfos.get(0).getLastSign());
+        if (userInfos.get(0).getLastSign() == null) {
+//            数据更新
+            UserInfo userInfot = new UserInfo();
+            userInfot.setLastSign(nowDay);
+            userInfot.setSignSum(userInfos.get(0).getSignSum() + 1);
+            userInfoMapper.updateByExampleSelective(userInfot, userInfoExample);
+//            签到表添加记录
+            SignIn signInt = new SignIn();
+            signInt.setNickname(nickName);
+            signInt.setDays(nowDay);
+            signInMapper.insertSelective(signInt);
+            return 0;
+        } else {
+            sLastDay = simpleDateFormat.format(userInfos.get(0).getLastSign());
+            if(sNowDay.equals(sLastDay)){
+                return 1;
+            } else {
+                //      更新用户表签到记录
+                UserInfo userInfo = new UserInfo();
+                userInfo.setLastSign(nowDay);
+                userInfo.setSignSum(userInfos.get(0).getSignSum() + 1);
+                userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
+                //      签到表添加记录
+                SignIn signIn = new SignIn();
+                signIn.setNickname(nickName);
+                signIn.setDays(nowDay);
+                signInMapper.insertSelective(signIn);
+                return 0;
+            }
         }
-//      更新用户表签到记录
-        UserInfo userInfo = new UserInfo();
-        userInfo.setLastSign(nowDay);
-        userInfo.setSignSum(userInfos.get(0).getSignSum() + 1);
-        userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
-//       签到表添加记录
-        SignIn signIn = new SignIn();
-        signIn.setNickname(nickName);
-        signIn.setDays(nowDay);
-        signInMapper.insertSelective(signIn);
-        return 0;
+
     }
 
     @Override
     public Map<String, Object> getSignIn(String nickName) {
-        Map<String,Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat simpleDateFormatd = new SimpleDateFormat("MM");
-        int nowMonth =Integer.parseInt(simpleDateFormatd.format(new Date()));
+        int nowMonth = Integer.parseInt(simpleDateFormatd.format(new Date()));
         String[] sign = new String[31];
         SignInExample signInExample = new SignInExample();
         signInExample.createCriteria().andNicknameEqualTo(nickName);
         List<SignIn> signIns = signInMapper.selectByExample(signInExample);
 
-        for (int i = signIns.size()-1, j = 31; i >= 0&&j>=0; i--,j--) {
+        for (int i = signIns.size() - 1, j = 31; i >= 0 && j >= 0; i--, j--) {
             String signDay = simpleDateFormat.format(signIns.get(i).getDays());
             String[] split = signDay.split("-");
             int month = Integer.parseInt(split[1]);
-            int day =Integer.parseInt(split[2]);
-            if(month==nowMonth){
-                sign[day-1] =signDay;
+            int day = Integer.parseInt(split[2]);
+            if (month == nowMonth) {
+                sign[day - 1] = signDay;
             }
         }
-        map.put("signUp",sign);
-        UserInfoExample userInfoExample =new UserInfoExample();
+        map.put("signUp", sign);
+        UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andNicknameEqualTo(nickName);
         UserInfo userInfo = userInfoMapper.selectByExample(userInfoExample).get(0);
-        map.put("count",userInfo.getSignSum());
+        map.put("count", userInfo.getSignSum());
         return map;
     }
 }
