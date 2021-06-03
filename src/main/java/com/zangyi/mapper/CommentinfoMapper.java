@@ -1,10 +1,10 @@
 package com.zangyi.mapper;
 
+import java.util.List;
+
 import com.zangyi.common.Commentinfo;
 import com.zangyi.common.CommentinfoExample;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface CommentinfoMapper {
     long countByExample(CommentinfoExample example);

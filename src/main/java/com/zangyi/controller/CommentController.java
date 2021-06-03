@@ -17,8 +17,8 @@ public class CommentController {
 
     @RequestMapping("/addCommment")
     @ResponseBody
-    public boolean addComment(String content, String userName, String userAvatar, Integer commentArea){
-        boolean flag = commentService.addComment(content, userName, userAvatar,commentArea);
+    public boolean addComment(String content, String userName, String userAvatar, Integer commentArea, String userId){
+        boolean flag = commentService.addComment(content, userName, userAvatar,commentArea, userId);
         return flag;
     }
 
@@ -31,8 +31,16 @@ public class CommentController {
 
     @RequestMapping("/myPush")
     @ResponseBody
-    public List<Commentinfo> myPush(String userName){
-        List<Commentinfo> myPush = commentService.myPush(userName);
+    public List<Commentinfo> myPush(String userId, Integer commentArea){
+        List<Commentinfo> myPush = commentService.myPush(userId, commentArea);
         return myPush;
+    }
+
+    @RequestMapping("commentCount")
+    @ResponseBody
+    public Integer commentCount(String userId){
+        Integer commentCount = commentService.commentCount(userId);
+        System.out.println(commentCount);
+        return commentCount;
     }
 }

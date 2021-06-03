@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.zangyi.common.Commentinfo">
     <id column="comment_id" jdbcType="INTEGER" property="commentId" />
     <result column="answer_id" jdbcType="INTEGER" property="answerId" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="comment_state" jdbcType="INTEGER" property="commentState" />
     <result column="prase_count" jdbcType="INTEGER" property="praseCount" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
@@ -134,7 +134,7 @@
       comment_state, prase_count, createtime, 
       updatetime, user_avatar, user_name, 
       comment_area, content)
-    values (#{commentId,jdbcType=INTEGER}, #{answerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+    values (#{commentId,jdbcType=INTEGER}, #{answerId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
       #{commentState,jdbcType=INTEGER}, #{praseCount,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{userAvatar,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{commentArea,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
@@ -184,7 +184,7 @@
         #{answerId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="commentState != null">
         #{commentState,jdbcType=INTEGER},
@@ -228,7 +228,7 @@
         answer_id = #{record.answerId,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.commentState != null">
         comment_state = #{record.commentState,jdbcType=INTEGER},
@@ -263,7 +263,7 @@
     update commentinfo
     set comment_id = #{record.commentId,jdbcType=INTEGER},
       answer_id = #{record.answerId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       comment_state = #{record.commentState,jdbcType=INTEGER},
       prase_count = #{record.praseCount,jdbcType=INTEGER},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -280,7 +280,7 @@
     update commentinfo
     set comment_id = #{record.commentId,jdbcType=INTEGER},
       answer_id = #{record.answerId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       comment_state = #{record.commentState,jdbcType=INTEGER},
       prase_count = #{record.praseCount,jdbcType=INTEGER},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -299,7 +299,7 @@
         answer_id = #{answerId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="commentState != null">
         comment_state = #{commentState,jdbcType=INTEGER},
@@ -331,7 +331,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zangyi.common.Commentinfo">
     update commentinfo
     set answer_id = #{answerId,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       comment_state = #{commentState,jdbcType=INTEGER},
       prase_count = #{praseCount,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
@@ -345,7 +345,7 @@
   <update id="updateByPrimaryKey" parameterType="com.zangyi.common.Commentinfo">
     update commentinfo
     set answer_id = #{answerId,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       comment_state = #{commentState,jdbcType=INTEGER},
       prase_count = #{praseCount,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},

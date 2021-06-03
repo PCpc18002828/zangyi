@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public boolean addComment(String content, String userName, String userAvatar, Integer commentArea) {
+    public boolean addComment(String content, String userName, String userAvatar, Integer commentArea, String userId) {
         Commentinfo commentinfo = new Commentinfo();
         Date createTime = new Date();
         //填充comment对象的其他参数，进行插入
@@ -32,6 +32,7 @@ public class CommentServiceImpl implements CommentService {
         commentinfo.setContent(content);
         commentinfo.setUserName(userName);
         commentinfo.setUserAvatar(userAvatar);
+        commentinfo.setUserId(userId);
         //状态：0待审核，1通过，2不通过
         commentinfo.setCommentState(1);
         //点赞数：初始默认为0
@@ -52,10 +53,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Commentinfo> myPush(String userName) {
+    public List<Commentinfo> myPush(String userId, Integer commentArea) {
         CommentinfoExample commentinfoExample = new CommentinfoExample();
-        commentinfoExample.createCriteria().andUserNameEqualTo(userName);
+        commentinfoExample.createCriteria().andUserIdEqualTo(userId).andCommentAreaEqualTo(commentArea);
         List<Commentinfo> myPush = commentinfoMapper.selectByExampleWithBLOBs(commentinfoExample);
         return myPush;
+    }
+
+    @Override
+    public Integer commentCount(String userId) {
+        CommentinfoExample commentinfoExample = new CommentinfoExample();
+        commentinfoExample.createCriteria().andUserIdEqualTo(userId);
+        Integer commentCount = commentinfoMapper.selectByExampleWithBLOBs(commentinfoExample).size();
+        return commentCount;
     }
 }
